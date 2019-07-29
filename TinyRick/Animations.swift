@@ -55,10 +55,6 @@ enum FightMove: CaseIterable {
         }
     }
     
-    var fileType: String {
-        return "dae"
-    }
-    
     var key: String {
         switch self {
             case .fightIdle: return "fightIdle"

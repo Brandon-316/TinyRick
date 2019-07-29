@@ -9,6 +9,7 @@
 import UIKit
 import SceneKit
 import ARKit
+import AVFoundation
 
 class ViewController: UIViewController, ARSCNViewDelegate {
     
@@ -20,16 +21,21 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     var animationCount: Int = 0
     var isRickPresent: Bool = false
     
+    var rickAudioPlayer = AVAudioPlayer()
+    var songAudioPlayer = AVAudioPlayer()
+    
     //Sound clip variables
     let soundType = "wav"
     let tinyRickSound = "tinyRick"
     let rickyTickySound = "rickyTickyTabbyBiatch"
     let wubbaLubbaSound = "wubbaLubbaDubDub"
+    let song = "ActinUp"
     
     //System sound ID's
     var tinyRickSoundID: SystemSoundID = 0
     var rickyTickySoundID: SystemSoundID = 1
     var wubbaLubbaSoundID: SystemSoundID = 2
+    var songSoundID: SystemSoundID = 3
 
     
     //MARK: - Outlets
@@ -39,6 +45,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     //MARK: - Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Load song
+        loadSound(resource: song, type: "m4a", with: &songAudioPlayer, play: false)
         
         // Set the view's delegate
         sceneView.delegate = self
@@ -129,11 +138,33 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     //Game Sounds
-    func playSound(resource: String, type: String, sound: inout SystemSoundID) {
-        let pathToSoundFile = Bundle.main.path(forResource: resource, ofType: type)
-        let soundURL = URL(fileURLWithPath: pathToSoundFile!)
-        AudioServicesCreateSystemSoundID(soundURL as CFURL, &sound)
-        AudioServicesPlaySystemSound(sound)
+    func play(audioPlayer: inout AVAudioPlayer) {
+        audioPlayer.play()
+    }
+    
+    func loadSound(resource: String, type: String, with audioPlayer: inout AVAudioPlayer, play: Bool) {
+        guard let sound = Bundle.main.path(forResource: resource, ofType: type) else {
+            print("error to get audio from file")
+            return
+        }
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound))
+        } catch {
+            print("audio file error")
+        }
+        
+        if play {
+            self.play(audioPlayer: &audioPlayer)
+        }
+    }
+    
+    func playSound(key: String, for audioPlayer: inout AVAudioPlayer) {
+        let dance = self.animation[self.animationCount]
+        switch dance {
+            case .breakdanceEnding1: loadSound(resource: tinyRickSound, type: soundType, with: &audioPlayer, play: true)
+            case .breakdanceEnding2: loadSound(resource: wubbaLubbaSound, type: soundType, with: &audioPlayer, play: true)
+            case .breakdanceEnding3: loadSound(resource: rickyTickySound, type: soundType, with: &audioPlayer, play: true)
+        }
     }
     
     func addRick(atLocation location: ARHitTestResult) {
@@ -189,7 +220,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Add the animation to start playing it right away
         self.lastAnimation = key
         sceneView.scene.rootNode.addAnimation(animations[key]!, forKey: key)
-        playSound(key: key)
+        playSound(key: key, for: &rickAudioPlayer)
+        songAudioPlayer.currentTime = 0
+        songAudioPlayer.play()
         
         if animationCount == animation.count - 1 {
             animationCount = 0
@@ -203,18 +236,18 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.scene.rootNode.removeAnimation(forKey: key, blendOutDuration: CGFloat(0.5))
     }
     
-    func playSound(key: String) {
-        let dance = self.animation[self.animationCount]
-        switch dance {
-            case .breakdanceEnding1: playSound(resource: tinyRickSound, type: soundType, sound: &tinyRickSoundID)
-            case .breakdanceEnding2: playSound(resource: wubbaLubbaSound, type: soundType, sound: &wubbaLubbaSoundID)
-            case .breakdanceEnding3: playSound(resource: rickyTickySound, type: soundType, sound: &rickyTickySoundID)
-        }
-    }
 }
 
 
 
+//MARK: - Monitor Scene
+extension ViewController {
+    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+        if isRickPresent && !sceneView.scene.rootNode.animationKeys.contains(self.lastAnimation) && songAudioPlayer.isPlaying {
+            self.songAudioPlayer.stop()
+        }
+    }
+}
 
 
 

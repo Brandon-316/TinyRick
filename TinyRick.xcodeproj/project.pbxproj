@@ -12,6 +12,7 @@
 		8401BA8F22ECA4B700BE3C73 /* wubbaLubbaDubDub.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8401BA8E22ECA4B700BE3C73 /* wubbaLubbaDubDub.wav */; };
 		8401BA9122ECA4BE00BE3C73 /* riggity.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8401BA9022ECA4BE00BE3C73 /* riggity.wav */; };
 		8401BA9322ECC40F00BE3C73 /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8401BA9222ECC40F00BE3C73 /* Animations.swift */; };
+		8411CBC322EF695A00E319B5 /* ActinUp.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 8411CBC222EF64B400E319B5 /* ActinUp.m4a */; };
 		846A58AE22EA04BB0084E3BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846A58AD22EA04BB0084E3BE /* AppDelegate.swift */; };
 		846A58B022EA04BB0084E3BE /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 846A58AF22EA04BB0084E3BE /* art.scnassets */; };
 		846A58B222EA04BB0084E3BE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846A58B122EA04BB0084E3BE /* ViewController.swift */; };
@@ -26,6 +27,7 @@
 		8401BA8E22ECA4B700BE3C73 /* wubbaLubbaDubDub.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = wubbaLubbaDubDub.wav; sourceTree = "<group>"; };
 		8401BA9022ECA4BE00BE3C73 /* riggity.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = riggity.wav; sourceTree = "<group>"; };
 		8401BA9222ECC40F00BE3C73 /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
+		8411CBC222EF64B400E319B5 /* ActinUp.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = ActinUp.m4a; sourceTree = "<group>"; };
 		846A58AA22EA04BB0084E3BE /* TinyRick.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinyRick.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		846A58AD22EA04BB0084E3BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		846A58AF22EA04BB0084E3BE /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -54,6 +56,7 @@
 				8401BA8C22ECA4A500BE3C73 /* rickyTickyTabbyBiatch.wav */,
 				8401BA8E22ECA4B700BE3C73 /* wubbaLubbaDubDub.wav */,
 				8401BA9022ECA4BE00BE3C73 /* riggity.wav */,
+				8411CBC222EF64B400E319B5 /* ActinUp.m4a */,
 			);
 			path = "Sound Files";
 			sourceTree = "<group>";
@@ -155,6 +158,7 @@
 				846A58BA22EA04BD0084E3BE /* LaunchScreen.storyboard in Resources */,
 				846A58B722EA04BD0084E3BE /* Assets.xcassets in Resources */,
 				8401BA9122ECA4BE00BE3C73 /* riggity.wav in Resources */,
+				8411CBC322EF695A00E319B5 /* ActinUp.m4a in Resources */,
 				846A58B522EA04BB0084E3BE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
