@@ -184,7 +184,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let y = location.worldTransform.columns.3.y
         let z = location.worldTransform.columns.3.z
         node.position = SCNVector3(x, y, z)
-        node.scale = SCNVector3(0.037, 0.037, 0.037)
+//        node.scale = SCNVector3(0.037, 0.037, 0.037)
+        node.scale = SCNVector3(0.004625, 0.004625, 0.004625)
         
         // Add the node to the scene
         sceneView.scene.rootNode.addChildNode(node)
